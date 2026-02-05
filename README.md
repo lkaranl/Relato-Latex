@@ -1,2 +1,0 @@
-# Relato-Latex
-
