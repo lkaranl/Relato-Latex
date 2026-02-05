@@ -1,5 +1,5 @@
 \section{MATERIAIS E MÉTODOS / PROCEDIMENTOS METODOLÓGICOS}
-    A infraestrutura do experimento foi baseada no microcontrolador \emph{M5StickC}, um dispositivo compacto e de baixo consumo energético. Ele é equipado com o SoC \emph{ESP32-PICO-D4}, que apresenta arquitetura dual-core com frequência de 240\,MHz, 
+    Para a infraestrutura do experimento, escolhemos o microcontrolador \emph{M5StickC} devido à sua portabilidade e baixo consumo energético. Esse dispositivo, equipado com o SoC \emph{ESP32-PICO-D4}, nos ofereceu a arquitetura dual-core necessária (240\,MHz), 
     520 KB de SRAM, conectividade Wi‑Fi (802.11 b/g/n) e 4 MB de memória \emph{flash} \cite{esp32_pico_datasheet}.
         
     O dispositivo possui uma tela TFT de 0{,}96$''$ com resolução de 80×160 pixels (driver ST7735SV), e é alimentado por uma bateria interna Li‑Po de 95 mAh a 3{,}7 V, gerenciada pelo circuito PMIC \emph{AXP192}, responsável também por fornecer energia aos demais componentes internos \cite{m5stickc_doc}.
@@ -7,10 +7,10 @@
     O \emph{M5StickC} integra diversos sensores e periféricos: IMU \emph{MPU6886}, microfone digital \emph{SPM1423}, LED vermelho, emissor infravermelho (IR), relógio de tempo real \emph{BM8563}, buzzer, dois botões físicos e antena de 2{,}4 GHz \cite{m5stickc_doc}. Para comunicação e expansão, disponibiliza uma porta Grove e os pinos G0, G26 e G36. Suas dimensões são de aproximadamente 48{,}2 × 25{,}5 × 13{,}7 mm, com peso de cerca de 15{,}1 g e faixa de temperatura de operação entre 0 °C e 60 °C \cite{digi_m5stickc}.
 
     \subsection{Implementação do WIFI}
-    Aqui descrevemos os procedimentos adotados para a criação e operação do ponto de acesso Wi-Fi falso utilizado no experimento, abordando desde a configuração do dispositivo até os desafios técnicos enfrentados durante sua execução.
+    Nesta seção, detalhamos os procedimentos que adotamos para criar e operar o ponto de acesso Wi-Fi falso. Descrevemos desde a configuração inicial do dispositivo até os desafios técnicos que enfrentamos e superamos durante a execução.
     
     \subsubsection{Configuração do Ambiente}
-       O \emph{M5StickC} foi configurado para atuar como ponto de acesso (\emph{access point}) com firmware personalizado baseado na plataforma ESP32-Arduino \cite{m5stickc_doc}. Embora o dispositivo ofereça um \emph{captive portal} nativo, foi necessário modificar o firmware para redirecionar todas as requisições HTTP para um servidor local embarcado, responsável por exibir uma réplica fiel da tela de login do Facebook (ver Figura~\ref{fig:loginfacebook}). Essa página, visualmente idêntica à original, foi projetada para capturar as credenciais inseridas pelos usuários, incluindo endereço de e-mail e senha.
+       Configuramos o \emph{M5StickC} para atuar como ponto de acesso (\emph{access point}) utilizando um firmware personalizado na plataforma ESP32-Arduino \cite{m5stickc_doc}. Apesar do dispositivo possuir um \emph{captive portal} nativo, optamos por modificar o firmware para garantir que todas as requisições HTTP fossem redirecionadas para o nosso servidor local. Isso nos permitiu exibir uma réplica fiel da tela de login do Facebook (ver Figura~\ref{fig:loginfacebook}), que projetamos para ser visualmente idêntica à original e capaz de capturar as credenciais (e-mail e senha) inseridas pelos participantes.
 
    \begin{figure}[ht]
       \centering
@@ -19,11 +19,11 @@
       \label{fig:loginfacebook}
     \end{figure}
 
-    Durante os testes, observou-se que a antena integrada do dispositivo possui alcance limitado (cerca de 10\,m). Tentativas de expandir esse alcance com o uso de roteadores como repetidores foram descartadas, uma vez que, embora os dispositivos conseguissem conectar-se à rede, o redirecionamento para o portal falso não era executado corretamente. Dessa forma, o \emph{M5StickC} foi posicionado manualmente em pontos estratégicos de circulação no campus, maximizando o alcance efetivo da rede e a chance de coleta de dados.
+    Durante nossos testes de campo, percebemos que a antena integrada possuía um alcance limitado (cerca de 10\,m). Chegamos a cogitar o uso de roteadores como repetidores, mas descartamos a ideia pois o redirecionamento para o portal falso falhava nessa configuração. Nossa solução foi posicionar o \emph{M5StickC} manualmente em pontos estratégicos de circulação, o que nos permitiu maximizar o alcance efetivo da rede.
     
-    A autonomia energética também se mostrou um desafio. A bateria interna de 95\,mAh permitia um tempo de operação de apenas 5 a 8 minutos, inviabilizando o uso prolongado em locais sem alimentação elétrica, especialmente em operações discretas. Para contornar essa limitação, foi utilizada uma bateria externa (\emph{power bank}) de aproximadamente 4000\,mAh, o que aumentou significativamente a autonomia do sistema e possibilitou a execução contínua do experimento por períodos estendidos.
+    Também enfrentamos o desafio da autonomia energética. A bateria interna sustentava o dispositivo por apenas 5 a 8 minutos, o que inviabilizava nossa proposta. Para resolver isso, acoplamos uma bateria externa (\emph{power bank}) de 4000\,mAh, garantindo a execução contínua do experimento durante todo o período planejado.
 
-    Para garantir a privacidade dos participantes e seguir princípios éticos de pesquisa, as credenciais capturadas passaram por um processo de anonimização antes de serem armazenadas. O procedimento completo de registro e anonimização das tentativas de login está descrito no Algoritmo~\ref{alg:anonimizacao}.
+    Preocupados com a privacidade e a ética da pesquisa, implementamos um rigoroso processo de anonimização. Nenhuma credencial real foi armazenada em texto claro; nosso procedimento de registro e anonimização está detalhado no Algoritmo~\ref{alg:anonimizacao}.
 
     \begin{algorithm}[H]
     \caption{Anonimização e Registro de Tentativas de Login}
