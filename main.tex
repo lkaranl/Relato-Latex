@@ -1,0 +1,123 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Pacotes Básicos ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{helvet} % Fonte similar à Arial
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{etoolbox}
+
+% --- Configuração de Margens  ---
+\geometry{
+    a4paper,
+    top=3.5cm,
+    left=3.0cm,
+    right=2.5cm,
+    bottom=2.5cm
+}
+
+% --- Espaçamento entre linhas [cite: 34] ---
+\onehalfspacing % 1,5 para o corpo do texto
+
+% --- Configuração de Seções [cite: 37, 38, 39] ---
+\titleformat{\section}
+  {\normalfont\normalsize\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{1.5ex}{6pt}
+
+% --- Títulos sem numeração (Resumo, Referências) [cite: 41] ---
+\titleformat{name=\section,numberless}
+  {\normalfont\normalsize\bfseries}{}{0pt}{}
+
+% --- Comandos para Citações Longas (Tamanho 10, Espaço Simples)  ---
+\newenvironment{citacaolonga}
+  {\begin{list}{}{
+    \small % Tamanho 10 aproximado
+    \singlespacing
+    \leftmargin=4cm
+    \rightmargin=0pt}
+    \item\relax}
+  {\end{list}}
+
+% --- Início do Documento ---
+\begin{document}
+
+% --- Título [cite: 7] ---
+\begin{center}
+    \singlespacing
+    \textbf{\fontsize{12}{14}\selectfont TÍTULO EM MAIÚSCULAS, NEGRITO E CENTRALIZADO (MÁXIMO 2 LINHAS)}
+\end{center}
+
+\vspace{0.5cm}
+
+% --- Categoria e Área Temática [cite: 8] ---
+\noindent \textbf{CATEGORIA:} RELATO DE EXPERIÊNCIA \\
+\textbf{ÁREA TEMÁTICA:} Inserir Área Aqui
+
+\vspace{0.5cm}
+
+% --- Autores [cite: 9, 10, 18] ---
+\noindent {\fontsize{11}{13}\selectfont Nome Completo do Primeiro Autor\footnote{Formação. Local de atuação (IES). Email de contato.}} \\
+\noindent {\fontsize{11}{13}\selectfont Nome Completo do Segundo Autor\footnote{Afiliação e contato.}} \\
+\noindent {\fontsize{11}{13}\selectfont Nome Completo do Terceiro Autor\footnote{Afiliação e contato.}}
+
+\vspace{1cm}
+
+% --- Resumo [cite: 11, 12, 14] ---
+\section*{Resumo}
+\begin{spacing}{1.0}
+{\fontsize{12}{14}\selectfont 
+O resumo deve conter entre 150 e 250 palavras em parágrafo único. Deve apresentar o objetivo, o método e os resultados ou contribuições de forma concisa, escrito na terceira pessoa.
+}
+\end{spacing}
+
+\vspace{0.3cm}
+\noindent \textbf{Palavras-Chave:} Palavra 1. Palavra 2. Palavra 3. [cite: 13]
+
+\vspace{1cm}
+
+% --- Seções do Relato [cite: 42, 43] ---
+\section{INTRODUÇÃO}
+A introdução deve contextualizar o tema, a ideia inicial, o referencial teórico breve, objetivos e a justificativa[cite: 43]. 
+
+\section{MATERIAIS E MÉTODOS / PROCEDIMENTOS METODOLÓGICOS}
+Descrever de forma sucinta o método, universo, população, técnicas de coleta e análise de dados[cite: 51, 52].
+
+\section{RESULTADOS E DISCUSSÃO}
+Descrever o que foi encontrado na experiência, articulando com o referencial teórico[cite: 83, 84].
+
+% Exemplo de Tabela/Figura [cite: 86, 95]
+\begin{center}
+    \captionof{table}{Título da Tabela na parte superior}
+    \small % Notas/Fontes em tamanho 10 [cite: 96]
+    \noindent Fonte: Os autores (2026). [cite: 98]
+\end{center}
+
+\section{CONSIDERAÇÕES FINAIS OU CONCLUSÃO}
+Reflexões resumidas, sem novas citações, destacando contribuições e recomendações[cite: 114, 115].
+
+\newpage
+
+% --- Referências [ABNT NBR 6023:2018] ---
+\section*{REFERÊNCIAS}
+\begin{spacing}{1.0}
+\fontsize{11}{13}\selectfont
+\raggedright % Alinhamento à esquerda
+\setlength{\parindent}{0pt} % Sem recuo de parágrafo
+\setlength{\parskip}{\baselineskip} % Um espaço simples em branco entre referências
+
+% REGRA: Lista única (não separar sites). Autores repetidos devem ter o nome repetido (não usar _______).
+
+SOBRENOME, Nome. \textbf{Título do livro}. Local: Editora, ano.
+
+SOBRENOME, Nome. Título do artigo. \textbf{Título do Periódico}, Local, v. X, n. Y, p. 00-00, ano.
+
+AUTOR, Nome. \textbf{Título da obra online}. Disponível em: <http://www.site.com.br>. Acesso em: dia mês. ano.
+\end{spacing}
+
+\end{document}
