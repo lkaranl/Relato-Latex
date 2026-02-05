@@ -44,7 +44,7 @@
 % --- Configuração de Seções [cite: 37, 38, 39] ---
 \titleformat{\section}
   {\normalfont\normalsize\bfseries}{\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{1.5ex}{6pt}
+\titlespacing*{\section}{0pt}{1.5ex}{0pt} % Corpo do texto inicia imediatamente abaixo (0pt)
 
 % --- Títulos sem numeração (Resumo, Referências) [cite: 41] ---
 \titleformat{name=\section,numberless}
@@ -53,7 +53,7 @@
 % --- Comandos para Citações Longas (Tamanho 10, Espaço Simples)  ---
 \newenvironment{citacaolonga}
   {\begin{list}{}{
-    \small % Tamanho 10 aproximado
+    \footnotesize % Tamanho 10 (footnotesize em doc 12pt)
     \singlespacing
     \leftmargin=4cm
     \rightmargin=0pt}
@@ -116,7 +116,7 @@ Descrever o que foi encontrado na experiência, articulando com o referencial te
 % Exemplo de Tabela/Figura [cite: 86, 95]
 \begin{center}
     \captionof{table}{Título da Tabela na parte superior}
-    \small % Notas/Fontes em tamanho 10 [cite: 96]
+    \footnotesize % Notas/Fontes em tamanho 10 [cite: 96]
     \noindent Fonte: Os autores (2026). [cite: 98]
 \end{center}
 
