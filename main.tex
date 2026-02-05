@@ -11,9 +11,25 @@
 \usepackage{geometry}
 \usepackage{titlesec}
 \usepackage{caption}
-\usepackage{etoolbox}
+% --- Pacotes de Citações ---
+\usepackage[alf,abnt-emphasize=bf]{abntex2cite} % Citações padrão ABNT (Autor-Data)
 
-% --- Configuração de Margens  ---
+% --- Referências [ABNT NBR 6023:2018] ---
+% Configuração da visualização da bibliografia para atender: Arial 11, Alinhada à Esquerda, Espaço Simples
+\newcommand{\imprimirReferencias}{
+    \section*{REFERÊNCIAS}
+    \begin{spacing}{1.0}
+        \fontsize{11}{13}\selectfont
+        \raggedright % Alinhamento à esquerda
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{\baselineskip} % Espaço entre referências
+        \bibliography{ref}
+    \end{spacing}
+}
+
+% Comentar ou remover a lista manual anterior e usar o comando abaixo no lugar correto no documento final:
+% \imprimirReferencias
+
 \geometry{
     a4paper,
     top=3.5cm,
@@ -83,13 +99,13 @@ O resumo deve conter entre 150 e 250 palavras em parágrafo único. Deve apresen
 
 % --- Seções do Relato [cite: 42, 43] ---
 \section{INTRODUÇÃO}
-A introdução deve contextualizar o tema, a ideia inicial, o referencial teórico breve, objetivos e a justificativa[cite: 43]. 
+A introdução deve contextualizar o tema, a ideia inicial, o referencial teórico breve, objetivos e a justificativa \cite{exemploLivro}. 
 
 \section{MATERIAIS E MÉTODOS / PROCEDIMENTOS METODOLÓGICOS}
-Descrever de forma sucinta o método, universo, população, técnicas de coleta e análise de dados[cite: 51, 52].
+Descrever de forma sucinta o método, universo, população, técnicas de coleta e análise de dados \cite{exemploArtigo}.
 
 \section{RESULTADOS E DISCUSSÃO}
-Descrever o que foi encontrado na experiência, articulando com o referencial teórico[cite: 83, 84].
+Descrever o que foi encontrado na experiência, articulando com o referencial teórico \cite{exemploSite}.
 
 % Exemplo de Tabela/Figura [cite: 86, 95]
 \begin{center}
@@ -103,21 +119,7 @@ Reflexões resumidas, sem novas citações, destacando contribuições e recomen
 
 \newpage
 
-% --- Referências [ABNT NBR 6023:2018] ---
-\section*{REFERÊNCIAS}
-\begin{spacing}{1.0}
-\fontsize{11}{13}\selectfont
-\raggedright % Alinhamento à esquerda
-\setlength{\parindent}{0pt} % Sem recuo de parágrafo
-\setlength{\parskip}{\baselineskip} % Um espaço simples em branco entre referências
-
-% REGRA: Lista única (não separar sites). Autores repetidos devem ter o nome repetido (não usar _______).
-
-SOBRENOME, Nome. \textbf{Título do livro}. Local: Editora, ano.
-
-SOBRENOME, Nome. Título do artigo. \textbf{Título do Periódico}, Local, v. X, n. Y, p. 00-00, ano.
-
-AUTOR, Nome. \textbf{Título da obra online}. Disponível em: <http://www.site.com.br>. Acesso em: dia mês. ano.
-\end{spacing}
+% --- Referências (BibTeX) ---
+\imprimirReferencias
 
 \end{document}
